@@ -1,27 +1,27 @@
-POST http://localhost:3333/videos
+POST http://localhost:3333/characters
 Content-type: application/json
 
 {
-    "title": "Vídeo node",
-    "description": "Esse é o primeiro vídeo",
-    "duration": 180
+    "name": "Uniquaaaaaa",
+    "description": "A sua amiguinha",
+    "image": "https://static.wikia.nocookie.net/backyardigans/images/3/3d/The_Backyardigans_The_Yeti_29_Uniqua.png/revision/latest?cb=20160918102344&path-prefix=pt-br"
 }
 
 ###
 
-GET http://localhost:3333/videos
+GET http://localhost:3333/characters
 
 ###
 
-PUT http://localhost:3333/videos/d73dd2f3-7dd4-434a-a0d0-f467786587c1
+PUT http://localhost:3333/characters/09223163-8e64-4047-9c0f-b7df50f6453d
 Content-type: application/json
 
 {
-    "title": "Vídeo 02",
-    "description": "Esse é o primeiro vídeo",
-    "duration": 180
+    "name": "Inimigo",
+    "description": "Inimigozinho",
+    "image": "https://static.wikia.nocookie.net/thebackyardigansencyclopedia/images/9/94/The_Backyardigans_Pablo_as_the_Soccer_Monster.png/revision/latest?cb=20160802223235"
 }
 
 ###
 
-DELETE http://localhost:3333/videos/d73dd2f3-7dd4-434a-a0d0-f467786587c1
+DELETE http://localhost:3333/characters/fe11dd23-ce24-4ed7-a656-d490af2ba3db

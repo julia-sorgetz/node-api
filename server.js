@@ -6,52 +6,48 @@ const server = fastify();
 // const database = new DatabaseMemory();
 const database = new DatabasePostgres();
 
-server.post("/videos", async (request, reply) => {
-  const { title, description, duration } = request.body;
+server.post("/characters", async (request, reply) => {
+  const { name, description, image } = request.body;
 
   await database.create({
-    title,
+    name,
     description,
-    duration,
+    image,
   });
 
-  console.log(database.list());
-
-  return reply.status(201).send();
+  return database.list();
 });
 
-server.get("/videos", async (request) => {
+server.get("/characters", async (request) => {
   const search = request.query.search;
 
-  console.log(search);
+  const characters = await database.list(search);
 
-  const videos = await database.list(search);
-
-  return videos;
+  return characters;
 });
 
-server.put("/videos/:id", async (request, reply) => {
-  const videoId = request.params.id;
-  const { title, description, duration } = request.body;
+server.put("/characters/:id", async (request, reply) => {
+  const characterId = request.params.id;
+  const { name, description, image } = request.body;
 
-  await database.update(videoId, {
-    title,
+  await database.update(characterId, {
+    name,
     description,
-    duration,
+    image,
   });
 
-  return reply.status(204).send();
+  return database.list();
 });
 
-server.delete("/videos/:id", async (request, reply) => {
-  const videoId = request.params.id;
+server.delete("/characters/:id", async (request, reply) => {
+  const characterId = request.params.id;
 
-  await database.delete(videoId);
+  await database.delete(characterId);
 
-  return reply.status(204).send();
+  return database.list();
 });
 
 server.listen({
-  host: '0.0.0.0',
+  host: "0.0.0.0",
   port: process.env.PORT ?? 3333,
 });
